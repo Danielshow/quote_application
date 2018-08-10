@@ -1,4 +1,32 @@
 <% include partials/header %>
-      <h1>Created By Me for Easy Access<h1>
-      <h1><%= name %></h1>
+  <div class="container">
+    <h3 class="mt-4 text-uppercase">Quote Applicaton</h3> <small> Created by <%= makersname %></small>
+  </div>
+
+  <div class="container">
+    <code>Code Written using Javascript, Node and Express</code>
+    <div class="row">
+      <div class="col-md-7">
+        <form method="post" action="/">
+          <label class="col-form-label-md">Name</label><br>
+          <input type="text" name="name" class="form-control" placeholder="Enter your name">
+          <br>
+          <label class="col-form-label-md"> Quote </label>
+          <textarea name="textarea" rows="" cols="" class="form-control" placeholder="Enter your Quote here"></textarea>
+          <br>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
+      </div>
+      <div class="col-md-5">
+        <ul class="list-group">
+          <% for (let na of user.reverse()){%>
+            <li class="list-group-item"> Name:
+              <%= na.name %> <span style="float: right"><button href="#" class="deleteUser btn btn-primary btn-sm" data-id="<%= na._id %>">Delete</button></span></li>
+                <blockquote class="blockquote blockquote-footer list-group-item-info">  <%= na.quote %></blockquote>
+              <%}%>
+          </ul>
+        </div>
+      </div>
+    </div>
 <% include partials/footer %>
