@@ -20,7 +20,9 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res)=>{
-  render("I am in")
+  res.render("index", {
+    name: "DanielShow",
+  })
 })
 
 app.listen(3000, () => {
