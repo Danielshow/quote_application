@@ -32,7 +32,8 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   let newUser = {
     name: req.body.name,
-    quote: req.body.textarea
+    quote: req.body.textarea,
+    date: new Date
   }
   db.users.insert(newUser, (err, docs) => {
     if (err) {
@@ -42,14 +43,14 @@ app.post('/', (req, res) => {
   });
 })
 
-// app.delete('/users/delete/:id', (req, res)=>{
-//   db.users.remove({_id: ObjectId(req.params.id)}, (err, result)=>{
-//     if (err){
-//       console.log(err)
-//     }
-//     res.redirect('/')
-//   })
-// })
+app.delete('/:id', (req, res)=>{
+  db.users.remove({_id: ObjectId(req.params.id)}, (err, result)=>{
+    if (err){
+      console.log(err)
+    }
+    res.redirect('/')
+  })
+})
 
 
 

@@ -1,6 +1,6 @@
 <% include partials/header %>
   <div class="container">
-    <h3 class="mt-4 text-uppercase">Quote Applicaton</h3> <small> Created by <%= makersname %></small>
+    <h3 class="mt-4 text-uppercase text-center">Quote Applicaton</h3> <small> Created by <%= makersname %></small>
   </div>
 
   <div class="container">
@@ -9,24 +9,31 @@
       <div class="col-md-7">
         <form method="post" action="/">
           <label class="col-form-label-md">Name</label><br>
-          <input type="text" name="name" class="form-control" placeholder="Enter your name">
+          <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
           <br>
           <label class="col-form-label-md"> Quote </label>
-          <textarea name="textarea" rows="" cols="" class="form-control" placeholder="Enter your Quote here"></textarea>
+          <textarea name="textarea" rows="" cols="" class="form-control" placeholder="Enter your Quote here" required></textarea>
+          <!-- <small class="small"> Max Text 50 </small> -->
           <br>
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="submit" class="btn btn-default mb-4">Submit</button>
         </form>
 
       </div>
       <div class="col-md-5">
         <ul class="list-group">
-          <% for (let na of user.reverse()){%>
-            <li class="list-group-item"> Name:
+          <% for (let na of user.reverse().slice(0, 10)){%>
+            <li class="list-group-item">
               <%= na.name %> <span style="float: right"><button href="#" class="deleteUser btn btn-primary btn-sm" data-id="<%= na._id %>">Delete</button></span></li>
-                <blockquote class="blockquote blockquote-footer list-group-item-info">  <%= na.quote %></blockquote>
-              <%}%>
-          </ul>
-        </div>
+            <blockquote class="blockquote blockquote-footer list-group-item-info">
+              <% if (String(na.quote).split(' ').length == 1){%>
+                <%= String(na.quote).slice(0, 60) %>
+                  <% }else{ %>
+                    <%=na.quote%>
+                      <% } %>
+                        <span style="float: right; margin-right:4px"><%=String(na.date).slice(0, 24)%></span></blockquote>
+            <%}%>
+        </ul>
       </div>
     </div>
-<% include partials/footer %>
+  </div>
+  <% include partials/footer %>

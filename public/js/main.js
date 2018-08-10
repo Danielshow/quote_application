@@ -5,12 +5,12 @@ $('document').ready(function(){
 function deleteUser(){
   let confirmation = confirm("Are you sure you want to Delete")
 
-  if (confimation){
+  if (confirmation){
     $.ajax({
-      type: "DELETE",
-      url: "/users/delete/"+$(this).data("id")
+      type: 'DELETE',
+      url: '/'+ $(this).data("id")
     })
-    windows.location.replace('/')
+    window.location.replace('/')
   }else{
     return false;
   }
